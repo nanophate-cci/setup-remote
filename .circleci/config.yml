@@ -4,12 +4,9 @@ jobs:
   build:
     docker:
       - image: cimg/base:stable
-    working_directory: ~/repo
     resource_class: large
     steps:
       - setup_remote_docker
       - run:
-          name: Placeholder Step
-          command: |
-            # Add your command here
-            echo holla
+          name: docker build
+          command: docker build . --platform=linux/arm64
