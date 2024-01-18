@@ -2,13 +2,10 @@ version: 2.1
 
 jobs:
   build:
-    docker:
-      - image: cimg/base:stable
-    resource_class: large
+    machine: true
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 19.03.11
+      - run: docker version
       - run:
           name: docker build
           command: docker build --platform linux/arm64 .
