@@ -7,7 +7,8 @@ jobs:
     resource_class: large
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 19.03.11
       - run:
           name: docker build
           command: docker build --platform linux/arm64 .
