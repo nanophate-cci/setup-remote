@@ -7,7 +7,6 @@ jobs:
     working_directory: ~/repo
     resource_class: large
     steps:
-      - setup_remote_docker
       - run:
           name: Placeholder Step
           command: |
