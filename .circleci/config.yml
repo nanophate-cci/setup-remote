@@ -7,7 +7,6 @@ jobs:
     working_directory: ~/repo
     resource_class: medium
     steps:
-      - setup_remote_docker
       - run: 
           name: Update Docker 
           command: |
@@ -21,6 +20,7 @@ jobs:
                 docker-buildx-plugin && \
             docker version && \
             docker buildx version
+      - setup_remote_docker
       - run:
           name: Build a really docker image
           command: |
