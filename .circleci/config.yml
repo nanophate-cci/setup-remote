@@ -7,8 +7,8 @@ jobs:
     working_directory: ~/repo
     resource_class: medium
     steps:
-      - setup_remote_docker:
-          version: docker28
+      - setup_remote_docker
+      - run: docker version && docker buildx version
       - run:
           name: Placeholder Step
           command: |
