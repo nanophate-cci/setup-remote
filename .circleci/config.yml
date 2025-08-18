@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Build a really docker image
           command: |
-            docker images ls -a
+            docker image ls -a
             dockerfile=Dockerfile
             echo "FROM golang:1.16 AS builder" > $dockerfile
             echo "RUN echo hello" >> $dockerfile
