@@ -34,5 +34,5 @@ jobs:
             echo "RUN pip3 install --upgrade conan" >> $dockerfile
             echo "RUN echo hello" >> $dockerfile
             docker build -f $dockerfile --tag throwaway:$CIRCLE_BUILD_NUM .
-            docker images ls -a
+            docker image ls -a
             docker run --rm throwaway:$CIRCLE_BUILD_NUM
