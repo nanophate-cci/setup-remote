@@ -13,13 +13,26 @@ jobs:
           command: |
             sudo apt-get update && \
             sudo apt-get remove -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin && \
-            curl -fsSL https://get.docker.com -o get-docker.sh && \
-            sudo sh get-docker.sh || true && \
-            sudo apt-get install -y docker-buildx-plugin || true && \
+            sudo apt-get install -y \
+                docker-ce \
+                docker-ce-cli \
+                containerd.io \
+                docker-compose-plugin \
+                docker-buildx-plugin && \
             docker version && \
             docker buildx version
       - run:
-          name: Placeholder Step
+          name: Build a really docker image
           command: |
-            # Add your command here
-            echo holla
+            docker images ls -a
+            dockerfile=Dockerfile
+            echo "FROM golang:1.16 AS builder" > $dockerfile
+            echo "RUN echo hello" >> $dockerfile
+            echo " " >> $dockerfile
+            echo "FROM gcc:11.2.0" > $dockerfile
+            echo "RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y   cmake   python3-pip   python3" >> $dockerfile
+            echo "RUN pip3 install --upgrade conan" >> $dockerfile
+            echo "RUN echo hello" >> $dockerfile
+            docker build -f $dockerfile --tag throwaway:$CIRCLE_BUILD_NUM .
+            docker images ls -a
+            docker run --rm throwaway:$CIRCLE_BUILD_NUM
