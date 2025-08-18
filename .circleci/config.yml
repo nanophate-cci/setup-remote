@@ -9,6 +9,10 @@ jobs:
     steps:
       - setup_remote_docker
       - run: docker version && docker buildx version
+      - run: |
+          sudo apt-get update
+          sudo apt-get install --upgrade docker-buildx-plugin
+          docker buildx version
       - run:
           name: Placeholder Step
           command: |
