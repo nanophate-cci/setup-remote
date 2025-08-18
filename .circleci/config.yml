@@ -13,12 +13,9 @@ jobs:
           command: |
             sudo apt-get update && \
             sudo apt-get remove -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin && \
-            sudo apt-get install -y \
-                docker-ce \
-                docker-ce-cli \
-                containerd.io \
-                docker-compose-plugin \
-                docker-buildx-plugin && \
+            curl -fsSL https://get.docker.com -o get-docker.sh && \
+            sudo sh get-docker.sh || true && \
+            sudo apt-get install -y docker-buildx-plugin || true && \
             docker version && \
             docker buildx version
       - run:
