@@ -8,7 +8,7 @@ jobs:
     resource_class: medium
     steps:
       - setup_remote_docker:
-          version: edge
+          version: docker28
       - run:
           name: Placeholder Step
           command: |
