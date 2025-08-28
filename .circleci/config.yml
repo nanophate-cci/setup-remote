@@ -7,7 +7,8 @@ jobs:
     working_directory: ~/repo
     resource_class: medium
     steps:
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: docker24
       - run: 
           name: Update Docker 
           command: |
