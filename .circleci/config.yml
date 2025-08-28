@@ -4,6 +4,7 @@ jobs:
   build:
     docker:
       - image: cimg/base:stable
+    image: cimg/base:current
     working_directory: ~/repo
     resource_class: medium
     steps:
